@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "koa typescript"
+title:  "Koa Typescript"
 date:   2019-03-07 00:55:00 -0800
-categories: jekyll update
+categories: typescript
 ---
 
 A simple example of a crud Rest API using Typescript. 
