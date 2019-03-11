@@ -11,7 +11,6 @@ It uses:
 * Mocha as a testing framwork 
 * Chai as a assertion library
 
-
 Check it out here:  [koa-typescript][koa-typescript]
 
 [koa-typescript]: https://github.com/guckin/typescript-koa
