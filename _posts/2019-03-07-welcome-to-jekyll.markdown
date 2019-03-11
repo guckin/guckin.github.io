@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "koa with typescript"
+title:  "koa typescript"
 date:   2019-03-07 00:55:00 -0800
 categories: jekyll update
 ---
