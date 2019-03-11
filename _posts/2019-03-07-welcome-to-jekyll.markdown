@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "koa-type script"
+title:  "koa with typescript"
 date:   2019-03-07 00:55:00 -0800
 categories: jekyll update
 ---
 
 A simple example of a crud Rest API using Typescript. 
+
 It uses:
 * Koa, for http middleware 
 * Mocha as a testing framwork 
