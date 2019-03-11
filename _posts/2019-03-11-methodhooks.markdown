@@ -19,6 +19,22 @@ Available Hooks
 
 FYI: My Dogs name is slippy
 
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'slippy_method_hooks'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install slippy_method_hooks
+
 ## Usage
 
 ###  `.before`
