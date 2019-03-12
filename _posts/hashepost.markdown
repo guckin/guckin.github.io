@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Ruby Hash with dynamic setters and getters"
-date:   2018-07-10 00:55:00 -0800
+date:   2018-07-12 00:55:00 -0800
 categories: ruby
 ---
 
