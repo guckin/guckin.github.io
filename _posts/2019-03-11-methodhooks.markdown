@@ -7,7 +7,7 @@ categories: ruby
 
 Powerful method hooks for ruby
 
-[slippy_method_hooks](https://github.com/guckin/slippy_method_hooks)
+Check it out #[here](https://github.com/guckin/slippy_method_hooks)
 
 FYI: My Dogs name is slippy
 

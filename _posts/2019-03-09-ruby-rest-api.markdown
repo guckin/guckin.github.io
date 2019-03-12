@@ -4,6 +4,9 @@ title:  "Ruby Rest API"
 date:   2018-05-18 00:55:00 -0800
 categories: typescript
 ---
+
+Check it out here [here](https://github.com/guckin/ruby-rest-api)
+
 A rest API written with sinatra http framework
 
 ## API
