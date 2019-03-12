@@ -1,0 +1,154 @@
+---
+layout: post
+title:  "FUN STUFF"
+date:   2019-03-9 00:55:00 -0800
+categories: ruby
+---
+I turned a very simple excersie in ruby into something a bit more spicy. I wanted to have as much fun as posible. So I made a custom language. Totally fun but not code I would want to maintain.
+
+```ruby
+module MyModule
+  include AcronymMixin
+  add(:calculate) do
+    hook { |num| num + 1 }
+    hook { |num| num * 2 }
+    hook do |num|
+      p "The answer is: #{num}"
+      num
+    end
+  end
+end
+MyModule.caculate(20)
+# The answer is: 42
+```
+
+[excercise](https://exercism.io/tracks/ruby/exercises/acronym/solutions/de10d4034dbf4cad8e3a59b1650527cf?fbclid=IwAR3poOIVDRvCpuXnIxB6lykFF67TLI79VVhdQfC4IuXr1-GYQ_IQOJCc55k)
+
+I needed to pass these tests:
+```ruby
+require 'minitest/autorun'
+require_relative 'acronym'
+
+# Common test data version: 1.5.0 787d24e
+class AcronymTest < Minitest::Test
+  def test_basic
+    assert_equal "PNG", Acronym.abbreviate('Portable Network Graphics')
+  end
+
+  def test_lowercase_words
+    assert_equal "ROR", Acronym.abbreviate('Ruby on Rails')
+  end
+
+  def test_punctuation
+    assert_equal "FIFO", Acronym.abbreviate('First In, First Out')
+  end
+
+  def test_all_caps_word
+    assert_equal "GIMP", Acronym.abbreviate('GNU Image Manipulation Program')
+  end
+
+  def test_punctuation_without_whitespace
+    assert_equal "CMOS", Acronym.abbreviate('Complementary metal-oxide semiconductor')
+  end
+
+  def test_very_long_abbreviation
+    assert_equal "ROTFLSHTMDCOALM", Acronym.abbreviate('Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me')
+  end
+
+  def test_consecutive_delimiters
+    assert_equal "SIMUFTA", Acronym.abbreviate('Something - I made up from thin air')
+  end
+end
+```
+
+Here is my over engineered solution:
+```ruby
+require 'pry'
+module AcronymMixin
+  # When the module gets included into another module
+  # we extend the out ClassMethods
+  def self.included(mod)
+    mod.extend(ClassMethods)
+  end
+
+  module ClassMethods
+    class NewMethod
+    
+      # `blk` is the block that was passed to this method
+      def hook(&blk)
+        # store a hook
+        hooks << blk
+      end
+
+      private
+
+      def call(*args)
+        recursively_call_hooks(hooks.dup, *args)
+      end
+
+      def hooks
+        # @hooks || @hooks = []
+        @hooks ||= []
+      end
+
+      def recursively_call_hooks(array, *args)
+        # here is the current hook
+        current = array.pop
+        # here is our base case conditon so we don't recurse off into infinity
+        return current.call(*args) if array.empty?
+        # Here is the next hook since the base case wasn't met
+        previous = recursively_call_hooks(array, *args)
+        # Here is how we get the method chaining. Notice we are
+        # calling the previous result with the current hook.
+        current.call(*previous)
+      end
+    end
+
+
+    def add(name, &blk)
+      # new instance of the method holder
+      meth = NewMethod.new
+      @methods ||= {}
+      @methods[name] = meth
+      # excute the block within side the instance of out NewMethod
+      meth.instance_exec(&blk)
+      # defines a singleton method with the name we passed in
+      define_singleton_method(name) do |*args|
+        # when this method gets called we call the private method #call
+        # send bypass the private keyword
+        meth.send(:call, *args)
+      end
+    end
+  end
+end
+
+module Acronym
+  PATTERN = / |-/
+  include AcronymMixin
+  add(:abbreviate) do
+    hook { |str| [str, PATTERN] }
+    hook { |str, pattern| str.split(pattern) }
+    hook { |*arr| arr.map { |e| e[0, 1] } }
+    hook { |*arr| arr.join }
+    hook(&:upcase)
+  end
+end
+```
+
+`.add` registers a new method on a `class` or `module`
+
+```ruby
+...
+add(:abbreviate) do
+...
+```
+I have to say I was inspired by the method chaining pattern. hooks are really just anonymous functions that get called one after another with the previous hook's return as the next hooks argument.
+
+```ruby
+...
+hook { |str| [str, PATTERN] }
+hook { |str, pattern| str.split(pattern) }
+hook { |*arr| arr.map { |e| e[0, 1] } }
+hook { |*arr| arr.join }
+...
+```
