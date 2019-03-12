@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Ruby Rest API"
-date:   2019-05-18 00:5:00 -0800
+date:   2018-05-18 00:55:00 -0800
 categories: typescript
 ---
 A rest API written with sinatra http framework
