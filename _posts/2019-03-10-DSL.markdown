@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "FUN STUFF"
-date:   2019-03-9 00:55:00 -0800
+date:   2019-01-09 00:55:00 -0800
 categories: ruby
 ---
 I turned a very simple excersie in ruby into something a bit more spicy. I wanted to have as much fun as posible. So I made a custom language. Totally fun but not code I would want to maintain.

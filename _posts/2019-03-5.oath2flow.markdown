@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "oauth 2"
+date:   2019-03-05 00:55:00 -0800
+categories: ruby
+---
+A school project
+[oauth2 example](https://github.com/guckin/oath2-flow-example)
+
+At one point this service was deployed using gcloud services. I took it down becasue I got no money.
+
+
