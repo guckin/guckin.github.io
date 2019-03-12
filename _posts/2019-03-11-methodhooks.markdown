@@ -7,6 +7,10 @@ categories: ruby
 
 Powerful method hooks for ruby
 
+[slippy_method_hooks](https://github.com/guckin/slippy_method_hooks)
+
+FYI: My Dogs name is slippy
+
 Available Hooks 
 
 `.before` - before a method execute callback 
@@ -17,7 +21,6 @@ Available Hooks
 
 `.time_box_method` - time box and call callback
 
-FYI: My Dogs name is slippy
 
 ## Installation
 
