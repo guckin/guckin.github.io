@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "oauth 2"
-date:   2019-03-05 00:55:00 -0800
+title:  "OAUTH 2"
+date:   2019-03-02 00:55:00 -0800
 categories: ruby
 ---
 A school project
